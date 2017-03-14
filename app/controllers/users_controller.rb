@@ -15,6 +15,36 @@ class UsersController < ApplicationController
     render json: { status: 200, user: current_user }
   end
 
+  def login
+    user = User.find_by(email: params[:user][:email])
+
+    if user && user.authenticate(params[:user][:password])
+      token = token(user.id, user.email)
+
+      render json: { status: 201, user: user, token: token }
+    else
+      render json: { status: 401, message: "unauthorized" }
+    end
+  end
+
+  private
+
+  def token(id, email)
+    JWT.encode(payload(id, email), 'areallyawesomesecret', 'HS256')
+  end
+
+  def payload(id, email)
+    {
+      exp: (Time.now + 1.day).to_i,
+      iat: Time.now.to_i,
+      iss: 'wdir-matey',
+      user: {
+        id: id,
+        email: email
+      }
+    }
+  end
+
   def user_params
     params.required(:user).permit(:name, :username, :email, :password)
   end
