@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
     render json: { comments: Comment.all }
   end
 
-
-
+  def show
+    render json: { comment: Comment.find(params[:id]) }
+  end
 
 end
