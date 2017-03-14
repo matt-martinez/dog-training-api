@@ -4,4 +4,8 @@ class PostsController < ApplicationController
     render json: { posts: Post.all }
   end
 
+  def show
+    render json: { post: Post.find(params[:id]) }
+  end
+
 end
