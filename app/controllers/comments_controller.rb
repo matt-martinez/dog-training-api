@@ -40,6 +40,11 @@ class CommentsController < ApplicationController
     render json: { comments: comments }
   end
 
+  def commentsByUser
+    comments = User.find(params[:id]).comments
+    render json: { comments: comments }
+  end
+
   private
 
     def comment_params
