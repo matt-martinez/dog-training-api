@@ -5,7 +5,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    render json: { post: Post.find(params[:id]) }
+    post = Post.find(params[:id])
+    comments = post.comments
+
+    render json: { post: post, comments: comments }
   end
 
   def createPost

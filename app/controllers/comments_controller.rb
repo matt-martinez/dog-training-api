@@ -35,11 +35,6 @@ class CommentsController < ApplicationController
     render json: { status: 204 }
   end
 
-  def commentsByPost
-    comments = Post.find(params[:id]).comments
-    render json: { comments: comments }
-  end
-
   def commentsByUser
     comments = User.find(params[:id]).comments
     render json: { comments: comments }

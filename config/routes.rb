@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       post '/login', to: 'users#login'
     end
   end
-  get 'posts/:id/comments', to: 'comments#commentsByPost'
   get 'users/:id/comments', to: 'comments#commentsByUser'
   post 'meetups/search', to: 'meetups#search'
   post 'posts/:id/comments', to: 'comments#createComment'
