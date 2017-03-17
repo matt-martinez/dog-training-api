@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   get 'posts/:id/comments', to: 'comments#commentsByPost'
   get 'users/:id/comments', to: 'comments#commentsByUser'
-  get 'meetups/search', to: 'meetups#meetupsSearch'
+  post 'meetups/search', to: 'meetups#search'
   post 'posts/:id/comments', to: 'comments#createComment'
   post 'users/:id/posts', to: 'posts#createPost'
 end
